@@ -1,0 +1,16 @@
+version: "2.1"
+
+# https://hub.docker.com/r/jdubz/hostapd
+
+services: 
+  radius:
+    image: "jdubz/hostapd"
+    ports:
+      - 1812:1812/udp
+    volumes:
+      - ./hostapd.conf:/srv/hostapd/etc/hostapd.conf
+      - ./pki/ca.crt:/hostapd/ca.crt
+      - ./pki/server.crt:/hostapd/server.crt
+      - ./pki/server.key:/hostapd/server.key
+      - ./hostapd.radius_clients:/hostapd/hostapd.radius_clients
+      - ./hostapd.eap_user:/hostapd/hostapd.eap_user

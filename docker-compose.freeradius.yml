@@ -1,0 +1,18 @@
+version: "2.1"
+
+# https://github.com/evansgp/docker-radius-eap-tls
+
+services: 
+  radius:
+    image: radius-with-eap
+    ports:
+      - 1812:1812/udp
+    volumes:
+      - ./pki/ca.crt:/etc/raddb/certs/ca.crt
+      - ./pki/server.key:/etc/raddb/certs/private/server.key
+      - ./pki/server.crt:/etc/raddb/certs/issued/server.crt
+      - ./pki/dh.pem:/etc/raddb/certs/dh.pem
+    environment:
+      - CLIENT_ADDRESS=0.0.0.0/0
+      - CLIENT_SECRET=test
+      - PRIVATE_KEY_PASSWORD=""
