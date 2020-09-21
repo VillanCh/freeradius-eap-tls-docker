@@ -4,7 +4,7 @@ version: "2.1"
 
 services: 
   radius:
-    image: radius-with-eap
+    build: "./docker-radius-eap-tls/"
     ports:
       - 1812:1812/udp
     volumes:
